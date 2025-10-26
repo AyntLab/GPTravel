@@ -6,8 +6,6 @@
     BackgroundColor="#121212"
     Title="GPTravel Setting">
 
-    <!-- test commit -->
-
     <ContentPage.Resources>
         <Color x:Key="Bg">#121212</Color>
         <Color x:Key="Card">#1E1E1E</Color>
