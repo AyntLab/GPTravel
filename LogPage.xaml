@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GPTravel.LogPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#121212">
+
+    <ContentPage.Resources>
+        <Color x:Key="Card">#1E1E1E</Color>
+        <Color x:Key="Accent">#4FC3F7</Color>
+        <Color x:Key="TextGray">#DDDDDD</Color>
+    </ContentPage.Resources>
+
+    <!-- ✅ Grid layout: Row 0 = date filter, Row 1 = buttons, Row 2 = log list -->
+    <Grid RowDefinitions="Auto,Auto,*" Padding="16" RowSpacing="10">
+
+        <!-- 🔹 期間指定 -->
+        <HorizontalStackLayout Grid.Row="0" Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label Text="From" TextColor="{StaticResource TextGray}" FontSize="14" VerticalOptions="Center" />
+            <DatePicker x:Name="startDatePicker"
+                Format="yyyy/MM/dd"
+                Date="2025-10-25"
+                TextColor="White"
+                BackgroundColor="{StaticResource Card}"
+                WidthRequest="130"
+                VerticalOptions="Center"
+                DateSelected="OnDateRangeChanged" />
+
+            <Label Text="～" TextColor="{StaticResource TextGray}" FontSize="16" VerticalOptions="Center" />
+
+            <Label Text="To" TextColor="{StaticResource TextGray}" FontSize="14" VerticalOptions="Center" />
+            <DatePicker x:Name="endDatePicker"
+                Format="yyyy/MM/dd"
+                Date="2025-10-25"
+                TextColor="White"
+                BackgroundColor="{StaticResource Card}"
+                WidthRequest="130"
+                VerticalOptions="Center"
+                DateSelected="OnDateRangeChanged" />
+        </HorizontalStackLayout>
+
+
+        <!-- 🔹 Top Buttons -->
+        <HorizontalStackLayout Grid.Row="1" Spacing="10" HorizontalOptions="Center">
+
+            <Button Text="📄 CSV"
+                    FontSize="14"
+                    BackgroundColor="{StaticResource Accent}"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="38"
+                    WidthRequest="90"
+                    Clicked="OnExportCsvClicked" />
+            
+            <Button Text="🗺️ KML"
+                    FontSize="14"
+                    BackgroundColor="{StaticResource Accent}"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="38"
+                    WidthRequest="90"
+                    Clicked="OnExportKmlClicked" />
+
+            <Button Text="◀"
+                    FontSize="14"
+                    BackgroundColor="#455A64"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="38"
+                    WidthRequest="50"
+                    Clicked="OnPreviousClicked" />
+
+            <Button Text="▶"
+                    FontSize="14"
+                    BackgroundColor="#455A64"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="38"
+                    WidthRequest="50"
+                    Clicked="OnNextClicked" />
+        </HorizontalStackLayout>
+
+        <!-- 🔹 Scrollable log list -->
+        <CollectionView x:Name="logList"
+                        Grid.Row="2"
+                        ItemsSource="{Binding Logs}"
+                        Margin="0,4"
+                        VerticalOptions="FillAndExpand">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="{StaticResource Card}"
+                           CornerRadius="12"
+                           Padding="12"
+                           HasShadow="True"
+                           Margin="0,6">
+                        <VerticalStackLayout Spacing="4">
+
+                            <Grid ColumnDefinitions="Auto,*,Auto"
+                                  RowDefinitions="Auto,Auto,Auto">
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding DateTime}"
+                                       TextColor="{StaticResource Accent}"
+                                       FontSize="14"
+                                       HorizontalOptions="Start" />
+
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Model}"
+                                       TextColor="#AAAAAA"
+                                       FontSize="12"
+                                       FontAttributes="Italic"
+                                       HorizontalOptions="Start"
+                                       Margin="12,0,0,0" />
+
+                                <HorizontalStackLayout Grid.Row="0"
+                                                       Grid.Column="2"
+                                                       Grid.RowSpan="3"
+                                                       Spacing="6"
+                                                       HorizontalOptions="End">
+
+                                    <Button Text="💬"
+                                            FontSize="14"
+                                            Padding="4,0"
+                                            HeightRequest="28"
+                                            WidthRequest="32"
+                                            BackgroundColor="#2E7D32"
+                                            TextColor="White"
+                                            CornerRadius="6"
+                                            Clicked="OnPromptClicked"
+                                            CommandParameter="{Binding}" />
+
+                                    <Button Text="🗺️"
+                                            FontSize="14"
+                                            Padding="4,0"
+                                            HeightRequest="28"
+                                            WidthRequest="32"
+                                            BackgroundColor="#0277BD"
+                                            TextColor="White"
+                                            CornerRadius="6"
+                                            Clicked="OnMapClicked"
+                                            CommandParameter="{Binding}" />
+
+                                    <Button Text="🚮"
+                                            FontSize="14"
+                                            Padding="4,0"
+                                            HeightRequest="28"
+                                            WidthRequest="32"
+                                            BackgroundColor="#B71C1C"
+                                            TextColor="White"
+                                            CornerRadius="6"
+                                            Clicked="OnDeleteClicked"
+                                            CommandParameter="{Binding}" />
+                                </HorizontalStackLayout>
+
+                                <Label Grid.Row="1" Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Text="{Binding Latitude, StringFormat='{0:F5}'}"
+                                       TextColor="{StaticResource TextGray}"
+                                       FontSize="13" />
+
+                                <Label Grid.Row="2" Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Text="{Binding Longitude, StringFormat='{0:F5}'}"
+                                       TextColor="{StaticResource TextGray}"
+                                       FontSize="13" />
+                            </Grid>
+
+                            <Editor Text="{Binding Response}"
+                                    IsReadOnly="False"
+                                    TextColor="White"
+                                    BackgroundColor="Transparent"
+                                    FontSize="15"
+                                    AutoSize="TextChanges"
+                                    Margin="0,6,0,0" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

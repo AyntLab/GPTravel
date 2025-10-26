@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+		  package="com.AyntLab.gptravel">
+
+	<application
+		android:allowBackup="true"
+		android:label="GPTravel"
+		android:supportsRtl="true"
+		android:icon="@mipmap/appicon"
+		android:roundIcon="@mipmap/appicon">
+
+		<!-- ✅ サービス名を正しいクラスに変更 -->
+		<service
+			android:name=".Platforms.Android.Services.TravelForegroundService"
+			android:exported="false"
+			android:foregroundServiceType="dataSync" />
+	</application>
+
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+	<uses-permission
+		android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+		android:maxSdkVersion="29" />
+</manifest>
