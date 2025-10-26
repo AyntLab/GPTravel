@@ -45,9 +45,7 @@
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.png" />
 
-		<MauiSplashScreen Include="Resources\Splash\splashs.png"
-                  Color="#000000"
-                  Resize="True" />
+		<MauiSplashScreen Include="Resources\Splash\splashs.png" Color="#000000" Resize="True" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -69,6 +67,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Platforms\Android\Resources\drawable\" />
+	  <Folder Include="Platforms\Android\Resources\Raw\" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android'">

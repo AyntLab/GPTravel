@@ -14,6 +14,8 @@ using Android.Gms.Location;
 using Android.OS;
 using AndroidX.Core.App;
 
+using Android.Media;
+
 using Microsoft.Data.Sqlite;
 using Microsoft.Maui.Storage;
 
@@ -309,7 +311,7 @@ namespace GPTravel.Platforms.Android.Services
                     messages = new[] { new { role = "user", content = prompt } }
                 };
 
-                var content = new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json");
+                var content = new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("https://api.openai.com/v1/chat/completions", content);
 
                 if (!response.IsSuccessStatusCode)
@@ -360,9 +362,35 @@ namespace GPTravel.Platforms.Android.Services
 
         private void Speak(string text)
         {
-            if (_tts is not null && !string.IsNullOrWhiteSpace(text))
-                _tts.Speak(text, global::Android.Speech.Tts.QueueMode.Flush, null, null);
+            try
+            {
+                // --- ① 音声再生（効果音） ---
+                var player = global::Android.Media.MediaPlayer.Create(this, Resource.Raw.snd_notice);
+                player.Start();
+
+                // 再生終了後にリリース（メモリリーク防止）
+                player.Completion += (s, e) =>
+                {
+                    player.Release();
+                    player.Dispose();
+                };
+
+                // --- ② 少し待ってからTTS再生 ---
+                _ = Task.Run(async () =>
+                {
+                    await Task.Delay(500); // 効果音が鳴り終わるまでの待機時間（0.5秒）
+                    if (_tts is not null && !string.IsNullOrWhiteSpace(text))
+                        _tts.Speak(text, global::Android.Speech.Tts.QueueMode.Flush, null, null);
+                });
+            }
+            catch (Exception ex)
+            {
+                ALog.Warn("GPTravel", $"効果音再生エラー: {ex.Message}");
+                if (_tts is not null && !string.IsNullOrWhiteSpace(text))
+                    _tts.Speak(text, global::Android.Speech.Tts.QueueMode.Flush, null, null);
+            }
         }
+
 
         private void SaveToDatabase(string gps, double lat, double lng, string model, string prompt, string response)
         {
