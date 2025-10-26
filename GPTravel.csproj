@@ -39,6 +39,21 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<AndroidSigningKeyStore>ayntlab_keystore.jks</AndroidSigningKeyStore>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningStorePass>aidayuu0</AndroidSigningStorePass>
+	  <AndroidSigningKeyPass>aidayuu0</AndroidSigningKeyPass>
+	  <AndroidSigningKeyAlias>ayntlabkey</AndroidSigningKeyAlias>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
+	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningStorePass>aidayuu0</AndroidSigningStorePass>
+	  <AndroidSigningKeyPass>aidayuu0</AndroidSigningKeyPass>
+	  <AndroidSigningKeyAlias>ayntlabkey</AndroidSigningKeyAlias>
 	</PropertyGroup>
 
 	<ItemGroup>
