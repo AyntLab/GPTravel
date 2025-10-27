@@ -39,7 +39,7 @@ AI-powered travel assistant for Android.<br>
 ---
 
 ## 📱 Installation / インストール方法
-⬇️ [**Download GPTravel v0.9.3 APK**](https://github.com/AyntLab/GPTravel-apk/releases/download/v0.9.3/com.AyntLab.gptravel-Signed_v093.apk)
+⬇️ [**Download GPTravel v0.9.3 APK**](https://github.com/AyntLab/GPTravel/releases/download/v0.9.3/com.AyntLab.gptravel-Signed_v093.apk)
 
 1️⃣ Download the APK file from the link above  
 2️⃣ Transfer it to your Android device  
@@ -87,9 +87,4 @@ Travel / AI / Android / Location-based Assistant
 Created by **AyntLab**  
 Contact: [GitHub Profile](https://github.com/AyntLab)
 
----
 
-## ⚖️ License / ライセンス
-This repository contains only the APK distribution.  
-Source code is private.  
-（本リポジトリはAPK配布専用であり、ソースコードは非公開です。）
