@@ -1,4 +1,4 @@
-<img width="1300" height="625" alt="midasi" src="https://github.com/user-attachments/assets/863527c5-5ae1-4fcc-a102-f0919bfbbd66" />
+<img width="1300" height="625" alt="midasi" src="https://github.com/user-attachments/assets/cb93979f-000d-489c-90f4-6070800d8759" />
 
 <h1 align="center">🌍 GPTravel</h1>
 <p align="center">
