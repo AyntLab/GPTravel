@@ -46,8 +46,14 @@ Version: v0.9.3
 Type: Beta / 初回公開版（テスト公開）
 
 <h3>📱 Installation / インストール方法</h3>
-Download the APK file below
-Transfer it to your Android device
-Enable “Install unknown apps” in settings
-Tap the file to install
-（下のAPKをダウンロードし、Android端末に転送 → 「提供元不明のアプリ」を許可 → タップでインストール）
+
+<p>
+⬇️ <a href="https://github.com/AyntLab/GPTravel/releases/download/v0.9.3/com.AyntLab.gptravel-Signed_v093.apk"><b>Download GPTravel v0.9.3 APK</b></a><br>
+
+1️⃣ Download the APK file from the link above<br>
+2️⃣ Transfer it to your Android device<br>
+3️⃣ Enable “Install unknown apps” in settings<br>
+4️⃣ Tap the file to install<br>
+
+（上のリンクからAPKをダウンロード → Android端末に転送 → 「提供元不明のアプリ」を許可 → ファイルをタップでインストール）
+</p>
