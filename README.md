@@ -1,3 +1,5 @@
+<img width="1300" height="625" alt="midasi" src="https://github.com/user-attachments/assets/7cc9c185-d314-4e6a-8a29-55f9f286f902" />
+
 <h1>🌍 GPTravel v0.9.3</h1>
 AI-powered travel companion that speaks to you based on GPS location, time, and your own prompt.<br>
 （GPS・現在時刻・自由入力のプロンプトをもとに、AIが定期的に語りかけてくれるアプリです。）
