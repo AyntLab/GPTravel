@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GPTravel.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#121212"
+    Title="GPTravel Setting">
+
+    <!-- test commit -->
+
+    <ContentPage.Resources>
+        <Color x:Key="Bg">#121212</Color>
+        <Color x:Key="Card">#1E1E1E</Color>
+        <Color x:Key="Accent">#4FC3F7</Color>
+        <Color x:Key="TextGray">#DDDDDD</Color>
+
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource TextGray}" />
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Card}" />
+            <Setter Property="PlaceholderColor" Value="#AAAAAA"/>
+        </Style>
+
+        <Style TargetType="Editor">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Card}" />
+            <Setter Property="PlaceholderColor" Value="#AAAAAA"/>
+        </Style>
+
+        <Style TargetType="Picker">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Card}" />
+            <Setter Property="TitleColor" Value="#AAAAAA"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                <Label x:Name="lblApiKey" Text="OpenAI API Key" VerticalOptions="Center"/>
+
+                <!-- Get Key ボタン -->
+                <Button
+        Text="Get Key"
+        FontSize="12"
+        Padding="8,2"
+        BackgroundColor="{StaticResource Card}"
+        TextColor="{StaticResource Accent}"
+        CornerRadius="8"
+        Clicked="OnGetApiKeyClicked"/>
+
+                <!-- 「？」ボタン追加 -->
+                <Button
+        x:Name="btnPaymentHelp"
+        Text="?"
+        FontSize="12"
+        Padding="8,2"
+        BackgroundColor="{StaticResource Card}"
+        TextColor="{StaticResource Accent}"
+        CornerRadius="8"
+        Clicked="OnPaymentHelpClicked"/>
+            </HorizontalStackLayout>
+
+
+
+
+            <Entry x:Name="txtApiKey" Placeholder="sk-..." IsPassword="True" />
+
+            <Label x:Name="lblLanguage" Text="Language / 言語" />
+            <Picker x:Name="pickerLanguage" Title="Select language">
+                <Picker.Items>
+                    <x:String>日本語</x:String>
+                    <x:String>English</x:String>
+                    <x:String>Français</x:String>
+                    <x:String>Deutsch</x:String>
+                    <x:String>Español</x:String>
+                </Picker.Items>
+            </Picker>
+
+
+            <Label x:Name="lblModel" Text="Model" />
+            <Picker x:Name="pickerModel" Title="Select model">
+                <Picker.Items>
+                    <x:String>gpt-5</x:String>
+                    <x:String>gpt-4o</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                <Label x:Name="lblPrompt" Text="Base Prompt" VerticalOptions="Center"/>
+                <Button
+        x:Name="btnExamplePrompt"
+        Text="Example"
+        FontSize="12"
+        Padding="8,2"
+        BackgroundColor="{StaticResource Card}"
+        TextColor="{StaticResource Accent}"
+        CornerRadius="8"
+        Clicked="OnExamplePromptClicked"/>
+                
+            </HorizontalStackLayout>
+            <Editor
+                x:Name="editorPrompt"
+                HeightRequest="200"
+                Text=""
+                AutoSize="TextChanges"/>
+
+            <Label
+                x:Name="lblInfoLocation"
+                FontSize="12"
+                TextColor="#AAAAAA"
+                LineBreakMode="WordWrap"
+                Margin="0,-4,0,8" />
+
+            <Label x:Name="lblInterval" Text="Speech interval (min)" />
+            <Picker x:Name="pickerInterval" Title="Select interval">
+                <Picker.Items>
+                    <x:String>1</x:String>
+                    <x:String>3</x:String>
+                    <x:String>5</x:String>
+                    <x:String>7</x:String>
+                    <x:String>8</x:String>
+                    <x:String>10</x:String>
+                    <x:String>15</x:String>
+                    <x:String>30</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Button
+                x:Name="btnStartForeground"
+                Text="常駐開始 / Start GPTravel"
+                BackgroundColor="{StaticResource Accent}"
+                TextColor="Black"
+                Clicked="OnStartForegroundClicked"
+                Margin="0,24,0,0"/>
+
+            <Button
+                x:Name="btnShowLogs"
+                Text="Log"
+                BackgroundColor="{StaticResource Card}"
+                TextColor="{StaticResource TextGray}"
+                Clicked="OnShowLogsClicked"
+                Margin="0,8,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
