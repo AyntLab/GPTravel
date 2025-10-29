@@ -18,7 +18,7 @@ namespace GPTravel
         public MainPage()
         {
             InitializeComponent();
-
+            //testing
             // SQLite 初期化
             _dbPath = Path.Combine(FileSystem.AppDataDirectory, "log.db");
             InitializeDatabase();
